@@ -72,7 +72,7 @@ function luu() { try { localStorage.setItem(KHOA_LUU(), JSON.stringify(chon)); }
 function bam(c, l) { chon[c] === l ? delete chon[c] : chon[c] = l; luu(); ve(); if (tg && tg.HapticFeedback) tg.HapticFeedback.selectionChanged(); }
 
 function the(u, i, loai) {
-  const l = chon[u.c] || '', tags = (u.tags || []).map(t => ({top: '🎯 Top', cc: '✂️ Chuyển cảnh', os: '🎥 Oneshot'}[t])).filter(Boolean);
+  const l = chon[u.c] || '', tags = (u.tags || []).map(t => ({top: '🎯 Top', cc: '✂️ Chuyển cảnh', os: '🎥 Oneshot', moi: '🌱 Mới ít KOC', sh: '🚀 Sắp hot'}[t])).filter(Boolean);
   let nut = '';
   if (loai === 'goi' && !u.trang_thai) nut = `<div class="nut"><button class="${l === 'm' ? 'on' : ''}" onclick="bam('${u.c}','m')">🛒 Mua</button>`
     + `<button class="${l === 'x' ? 'on vang' : ''}" onclick="bam('${u.c}','x')">🎁 Xin mẫu</button>`
@@ -155,7 +155,7 @@ function cap_nhat_nut() {
     try { chon = JSON.parse(localStorage.getItem(KHOA_LUU()) || '{}'); } catch (er) {}
     $('#tieu-de').textContent = '🛒 Mua mẫu ' + D.ngay;
     $('#mo-ta').textContent = `${D.goi_y.length} gợi ý · bấm 🛒 / 🎁 / ❌ rồi bấm nút Gửi ở dưới · chạm ảnh để xem lý do`;
-    const ks = [['*', 'Tất cả'], ['top', '🎯 Top'], ['cc', '✂️ Chuyển cảnh'], ['os', '🎥 Oneshot'], ['chua', '⬜ Chưa chọn']];
+    const ks = [['*', 'Tất cả'], ['top', '🎯 Top'], ['cc', '✂️ Chuyển cảnh'], ['os', '🎥 Oneshot'], ['moi', '🌱 Mới ít KOC'], ['sh', '🚀 Sắp hot'], ['chua', '⬜ Chưa chọn']];
     $('#loc-kieu').innerHTML = ks.map(([k, t]) => `<button data-k="${k}">${t}</button>`).join('');
     const ng = [...new Set(D.goi_y.map(u => u.nganh).filter(Boolean))];
     $('#loc-nganh').innerHTML = ng.length > 1 ? [['*', 'Mọi ngành'], ...ng.map(n => [n, n])].map(([k, t]) => `<button data-k="${e(k)}">${e(t)}</button>`).join('') : '';
